@@ -22,3 +22,9 @@ theme = "mytheme"
 
 [formatter]
 lastmod = ["lastmod", ":git"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
