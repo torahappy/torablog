@@ -108,8 +108,8 @@ lsblkresult should look like this:
 #XXXX-XXXX                              └─sda2
 #                                       nvme0n1
 EFIUUID=XXXX-XXXX  #                            ├─nvme0n1p1
-#XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX   ├─nvme0n1p
-VGUUID1=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX #  └─nvme0n1p2
+#XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX           ├─nvmexnxpx
+VGUUID1=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX #  └─nvmexnxpx
 VGUUID2=xXxXxX-xXxX-xXxX-xXxX-xXxX-xXxX-xXxXxX  # └─cryptvg
 ROOTUUID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX    #   ├─linuxvg-root
 HOMEUUID=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX     #  └─linuxvg-home
@@ -151,7 +151,7 @@ sudo ls # test if sudo works
 exit
 ```
 
-### config mkinitcpio
+### config mkinitcpio (HOOKS)
 ```bash
 vim /etc/mkinitcpio.conf
 ```
@@ -173,7 +173,7 @@ sed -i.bak s/VGUUID/$VGUUID1/ /etc/cmdline.d/root.conf # replace with uuid of en
 sed -i.bak s/ROOTUUID/$ROOTUUID/ /etc/cmdline.d/root.conf # replace with uuid of the root volume inside the vg
 ```
 
-### config mkinitcpio
+### config mkinitcpio (preset)
 
 ```bash
 vim /etc/mkinitcpio.d/linux.preset
@@ -203,8 +203,8 @@ fallback_options="-S autodetect"
 ### prepare the signing key, and generate the main EFI
 ```bash
 sbctl create-keys
-sbctl -s /boot/EFI/BOOT/BOOTx64.EFI
-sbctl -s /boot/EFI/FLBK/FLBKx64.EFI
+sbctl sign -s /boot/EFI/BOOT/BOOTx64.EFI
+sbctl sign -s /boot/EFI/FLBK/FLBKx64.EFI
 mkinitcpio -P
 ```
 
