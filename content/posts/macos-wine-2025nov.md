@@ -88,7 +88,7 @@ Download the custom DXVK for macOS here: https://github.com/Gcenx/DXVK-macOS/rel
 
 As usual, place x64 files to `<WINEPREFIX>/drive_c/windows/system32`  
 And, place x32 files to `<WINEPREFIX>/drive_c/windows/syswow64`  
-Note that the 64 bit binaries go to system *32* and 32 bit binaries go to syswow *64*
+Note that the 64 bit binaries go to system *32* and, 32 bit binaries go to syswow *64*
 
 Then, run `winecfg` and add `d3d10core`, `d3d11` to the dll list as `native then builtin`.  
 
@@ -98,13 +98,13 @@ Or, you can just set the environment variable like `WINEDLLOVERRIDES="d3d10core,
 
 ## DXMT
 
-As far as i tested, DXMT does not work for custom-built Wine binaries due to some symbols-related errors, only works for the homebrew Wine binaries. Adjustment of the build configuration is probably required for the custom Wine build.
+As far as i tested, DXMT does not work for custom-built Wine binaries (`/opt/local/lib/wine`) due to some symbols-related errors, only works for the homebrew Wine binaries. Adjustment of the build configuration is probably required for the custom Wine build. To patch the source, just put the patch files to `/opt/macports-wine/emulators/wine-devel` and change `Portfile`. (See https://github.com/3Shain/dxmt/wiki/Device-System-Runtime-Specifications for detail ; I have put `__attribute__((visibility("default")))` to several `winemac.so` functions, but that was't successful :( )
 
 ### pre-built binaries
 
-Sadly, dlls placed on `<WINEPREFIX>/drive_c/windows/` and those placed on `/opt/local/lib/wine` have different effects. Pre-built DXMT cannot be placed in `/opt/local/lib/wine` and pre-built DXMT cannot be placed in `<WINEPREFIX>/drive_c/windows/`.
+Sadly, dlls placed on `<WINEPREFIX>/drive_c/windows/` and those placed on `/opt/local/lib/wine` or `/Applications/Wine Devel.app/Contents/Resources/wine/lib/wine` have different effects. Pre-built DXVK cannot be placed in `/opt/local/lib/wine` or `/Applications/Wine Devel.app/Contents/Resources/wine/lib/wine` and pre-built DXMT cannot be placed in `<WINEPREFIX>/drive_c/windows/`.
 
-If you use pre-built DXMT, you have to place them in `/opt/local/lib/wine` (if you download it from homebrew, `/Applications/Wine Devel.app/Contents/Resources/wine/lib/wine`). You have to place 64-bit dlls to `x86_64-windows`, 32-bit dlls to `i386-windows` and 64-bit so files to `x86_64-unix`. See https://github.com/3Shain/dxmt/wiki/DXMT-Installation-Guide-for-Geeks .
+If you use pre-built DXMT, you have to place them in `/Applications/Wine Devel.app/Contents/Resources/wine/lib/wine`. You have to place 64-bit dlls to `x86_64-windows`, 32-bit dlls to `i386-windows` and 64-bit so files to `x86_64-unix`. See https://github.com/3Shain/dxmt/wiki/DXMT-Installation-Guide-for-Geeks .
 
 Download it from here: https://github.com/3Shain/dxmt/releases/tag/v0.71
 
