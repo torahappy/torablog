@@ -12,7 +12,7 @@ Waylandじゃないと動きません!!!!!! Xは使わないこと!!!
 
 ## 登場人物たち
 
-- BOX64 - なんか高速にx86_64をエミュレーションできるやつ
+- BOX64 - なんか高速にx86_64をエミュレーションできるやつ  
   ライブラリもうまいことarm64とx86_64とをハイブリッドで使ってくれる
 - fex-emu - また別のx86_64エミュレーター
 - muvm - ページサイズ16k→4kにするやつ
@@ -102,14 +102,14 @@ $HOME/.local/share/umu/steamrt3/_v2-entry-point <app-path>
 
 wine ダウンロード元
 
-- winehq builds
-  https://dl.winehq.org/wine-builds/fedora/42/x86_64/
+- winehq builds  
+  https://dl.winehq.org/wine-builds/fedora/42/x86_64/  
   steamrtとあわせるならfedoraじゃなくてdebian版がいいかも
-- Kron4ek
+- Kron4ek  
   https://github.com/Kron4ek/Wine-Builds/releases
-- umu-proton
+- umu-proton  
   https://github.com/Open-Wine-Components/umu-proton
-- proton-ge-custom
+- proton-ge-custom  
   https://github.com/GloriousEggroll/proton-ge-custom
 
 普通にumuが動いたので基本それでいいとは思うが、proton以外のwineを使う場合は、fedoraの公式からいろいろx86_64ライブラリーを引っ張ってきて別の場所に展開するプログラムを作る必要あるかも。。もしくはnixをつかう手もあり。もしくはsteamrtで全部入りを試す。
