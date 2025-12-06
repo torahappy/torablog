@@ -8,6 +8,8 @@ The Cosmic Wheel Sisterhood 感想
 
 [Steamページ](https://store.steampowered.com/app/1340480/The_Cosmic_Wheel_Sisterhood/)
 
+[GOGページ](https://www.gog.com/en/game/the_cosmic_wheel_sisterhood)
+
 若干ネタバレあるかも
 
 * * *
