@@ -1,10 +1,12 @@
 ---
-title: "ゲーム感想：cosmic wheel sisterhood"
+title: "ゲーム感想：The Cosmic Wheel Sisterhood"
 tags: []
 date: 2025-12-07T01:31:42+09:00
 ---
 
-cosmic wheel sisterhood 感想
+The Cosmic Wheel Sisterhood 感想
+
+[Steamページ](https://store.steampowered.com/app/1340480/The_Cosmic_Wheel_Sisterhood/)
 
 若干ネタバレあるかも
 
