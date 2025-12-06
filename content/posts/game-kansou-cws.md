@@ -10,6 +10,8 @@ The Cosmic Wheel Sisterhood 感想
 
 [GOGページ](https://www.gog.com/en/game/the_cosmic_wheel_sisterhood)
 
+[itch.ioページ](https://devolverdigital.itch.io/the-cosmic-wheel-sisterhood)
+
 若干ネタバレあるかも
 
 * * *
