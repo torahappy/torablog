@@ -1,4 +1,8 @@
-# asahi linux install memo
+---
+title: "asahi linux install memo"
+tags: []
+date: 2025-12-10T02:39:58+09:00
+---
 
 (1TB SSD setting)
 
