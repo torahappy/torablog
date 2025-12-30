@@ -1,0 +1,13 @@
+name = "Casper"
+license = "CC0"
+licenselink = "https://gitlab.torahappy.org/tora/torablog/blob/master/LICENSE.md"
+description = "TORA BLOG THEME!!!"
+homepage = "https://torablog.netlify.app/"
+tags = ["blog"]
+features = [""]
+min_version=0.1
+
+[author]
+  name = "Tora"
+  homepage = "https://torablog.netlify.app/"
+

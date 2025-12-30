@@ -1,0 +1,3 @@
+[submodule "themes/hugo-theme-casper"]
+	path = themes/hugo-theme-casper
+	url = https://github.com/vjeantet/hugo-theme-casper

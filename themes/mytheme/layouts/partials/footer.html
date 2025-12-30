@@ -1,0 +1,22 @@
+    <footer class="site-footer">
+        <section class="copyright"><a href="">{{.Site.Title}}</a> {{.Site.Copyright | safeHTML}}</section>
+        <section class="poweredby">Powered by <a class="icon-hugo" href="http://gohugo.io">HUGO</a> / Modified from <a href="https://github.com/vjeantet/hugo-theme-casper">hugo-theme-casper</a> (c) 2015 Valere JEANTET / Using <a href="https://katex.org/">katex</a> (c) 2013-2019 Khan Academy and other contributors</section>
+    </footer>
+    </div>
+    <link rel="stylesheet" href="{{ "katex/katex.min.css" | relURL}}">
+    <script src="{{ "katex/katex.min.js" | relURL}}"></script>
+    <script src="{{ "katex/auto-render.min.js" | relURL}}"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function(){
+      renderMathInElement(
+        document.body,{
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false}
+          ]
+        }
+      )
+    });
+    </script>
+</body>
+</html>

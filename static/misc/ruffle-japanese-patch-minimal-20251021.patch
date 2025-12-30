@@ -1,0 +1,58 @@
+diff --git a/core/src/loader.rs b/core/src/loader.rs
+index 0d7d41556..bf089e582 100644
+--- a/core/src/loader.rs
++++ b/core/src/loader.rs
+@@ -33,7 +33,7 @@ use crate::string::{AvmString, StringContext};
+ use crate::tag_utils::SwfMovie;
+ use crate::vminterface::Instantiator;
+ use chardetng::EncodingDetector;
+-use encoding_rs::{UTF_8, WINDOWS_1252};
++use encoding_rs::{UTF_8, WINDOWS_1252, SHIFT_JIS};
+ use gc_arena::collect::Trace;
+ use gc_arena::Collect;
+ use indexmap::IndexMap;
+@@ -1373,7 +1373,7 @@ impl<'gc> Loader<'gc> {
+                     utf8_string = encoding.decode(&body).0;
+                     utf8_string.as_bytes()
+                 } else if activation.context.root_swf.version() <= 5 {
+-                    utf8_string = WINDOWS_1252.decode(&body).0;
++                    utf8_string = SHIFT_JIS.decode(&body).0;
+                     utf8_string.as_bytes()
+                 } else {
+                     &body
+@@ -1461,7 +1461,21 @@ impl<'gc> Loader<'gc> {
+                         let value_data = if length == 0 {
+                             Value::Undefined
+                         } else {
+-                            AvmString::new_utf8(activation.gc(), UTF_8.decode(&body).0).into()
++                            if activation.context.system.use_codepage {
++                                // Determine the encoding
++                                let encoding = {
++                                    let mut encoding_detector = EncodingDetector::new();
++                                    encoding_detector.feed(&body, true);
++                                    encoding_detector.guess(None, true)
++                                };
++                                AvmString::new_utf8(activation.gc(), encoding.decode(&body).0).into()
++                            } else {
++                                if activation.context.root_swf.version() <= 5 {
++                                    AvmString::new_utf8(activation.gc(), SHIFT_JIS.decode(&body).0).into()
++                                } else {
++                                    AvmString::new_utf8(activation.gc(), UTF_8.decode(&body).0).into()
++                                }
++                            }
+                         };
+                         let _ = that.call_method(
+                             istr!("onData"),
+diff --git a/swf/src/string.rs b/swf/src/string.rs
+index a8caddeab..5c3f83b88 100644
+--- a/swf/src/string.rs
++++ b/swf/src/string.rs
+@@ -142,7 +142,7 @@ impl SwfStr {
+         if swf_version >= 6 {
+             UTF_8
+         } else {
+-            WINDOWS_1252
++            SHIFT_JIS
+         }
+     }
+ 

@@ -1,0 +1,13 @@
+{{ partial "header.html" . }}
+
+<main class="content" role="main">
+    {{ $paginator := .Paginator }}
+
+	{{ range $index, $page := $paginator.Pages }}
+	   {{ partial "pagelist.html" . }}
+	{{ end }}
+
+	{{ partial "pagination.html" $paginator }}
+</main>
+
+{{ partial "footer.html" . }}

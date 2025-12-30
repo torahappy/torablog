@@ -1,0 +1,24 @@
+{{ partial "header.html" . }}
+
+<header class="main-header">
+    <h1 class="page-title">{{.Title}}</h1>
+    {{if .Params.description}}
+    <h2 class="page-description">{{.Params.description}}</h2>
+    {{end}}
+</header>
+
+<main class="content" role="main">
+  {{ $paginator := .Paginator }}
+
+	<div class="extra-pagination inner">
+    {{ partial "pagination.html" $paginator }}
+	</div>
+
+	{{ range $index, $page := $paginator.Pages }}
+	   {{ partial "pagelist.html" . }}
+	{{ end }}
+
+	{{ partial "pagination.html" $paginator }}
+</main>
+
+{{ partial "footer.html" . }}

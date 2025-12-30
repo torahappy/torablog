@@ -1,0 +1,26 @@
+BaseUrl = "https://torablog.netlify.app/"
+LanguageCode = "ja"
+defaultContentLanguage = "ja"
+Title = "Tora Blog"
+pagination.pagerSize = 10
+Copyright = "ここでの投稿はすべて<a href='https://creativecommons.org/publicdomain/zero/1.0/'>CC0</a>にします。All posts are licensed under <a href='https://creativecommons.org/publicdomain/zero/1.0/'>CC0</a>."
+canonifyurls = true
+sectionPagesMenu = "main"
+hasCJKLanguage = true
+pygmentsCodeFences = true
+theme = "mytheme"
+
+[params]
+  description = "技術とかいろいろ"
+  logo = "avatar.png"
+  author = "Tora"
+  authorname = "Tora"
+  authorlocation = "Japan"
+  authorwebsite = "https://torahappy.org/"
+  authorbio = ""
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+

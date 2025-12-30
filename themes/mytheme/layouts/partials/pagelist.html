@@ -1,0 +1,24 @@
+<article class="post pagelist-item">
+    <header class="post-header">
+        <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    </header>
+    <section class="post-excerpt">
+        {{if .Params.excerpt }}
+            <p>{{ .Params.excerpt }} <a class="read-more" href="{{.RelPermalink}}">&raquo;</a></p>
+        {{else}}
+            <p>{{ .Content | strings.Truncate 100 }} <a class="read-more" href="{{.RelPermalink}}">&raquo;</a></p>
+        {{end}}
+    </section>
+    <footer class="post-meta">
+        Tags: [{{ range $index, $tag := .Params.tags }}
+            <a href="{{$.Site.BaseURL}}/tags/{{ $tag | urlize }}/">{{ $tag }}</a>,
+        {{ end }}]
+        <br/>
+        <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
+          {{ .Date.Format "1月 2日, 2006" }}
+        </time> / 
+        最終更新 <time class="update-date" datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
+          {{ .Lastmod.Format "1月 2日, 2006" }}
+        </time>
+    </footer>
+</article>

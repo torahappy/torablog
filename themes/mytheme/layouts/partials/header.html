@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="{{.Site.LanguageCode}}">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    {{ with .Params.image }}
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:image" content="{{ .  | relURL }}"/>
+    {{ else }}
+        {{ with .Site.Params.logo }}
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:image" content="{{ . | relURL }}"/>
+        {{ else }}
+        <meta name="twitter:card" content="summary"/>
+        {{ end }}
+    {{ end }}
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:title" content="{{ .Title }}"/>
+    <meta name="twitter:description" content="{{if .IsPage}}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}"/>
+    <meta name="twitter:site" content="{{ .Site.BaseURL }}"/>
+
+  	<meta property="og:title" content="{{ .Site.Title }}{{ if ne .RelPermalink "/" }} / {{ .Title }}{{ end }}" />
+  	<meta property="og:site_name" content="{{ .Site.Title }}" />
+  	<meta property="og:url" content="{{ .Permalink }}" />
+
+    {{with .Params.image }}
+       <meta property="og:image" content="{{ .  | relURL}}"/>
+    {{else}}
+        {{with .Site.Params.logo}}
+            <meta property="og:image" content="{{ . | relURL}}"/>
+        {{end}}
+    {{end}}
+
+    {{ if .IsPage }}
+    <meta property="og:description" content="{{ .Description }}" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" {{ .Date.Format "2006-01-02T15:04:05Z07:00" | printf "content=%q" | safeHTMLAttr }} />
+    <meta property="article:modified_time" {{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | printf "content=%q" | safeHTMLAttr }} />
+    <meta name="date" {{ .Date.Format "2006-01-02T15:04:05-07:00" | printf "content=%q" | safeHTMLAttr }}>
+
+    {{ range .Params.tags }}
+    <meta property="article:tag" content="{{ . }}" />
+    {{ end }}
+    {{ else }}
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="{{ .Site.Params.description }}" />
+    {{ end }}
+
+    <title>{{ .Site.Title }}{{ if ne .RelPermalink "/" }} / {{ .Title }}{{ end }}</title>
+
+    {{ if .IsPage }}
+    <meta name="description" content="{{ .Description | default (substr .Summary 0 160) }}" />
+    {{ else }}
+    <meta name="description" content="{{ .Site.Params.metadescription | default .Site.Params.description }}" />
+    {{ end }}
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="{{ "favicon.ico" | relURL}}">
+    <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL}}" />
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;400&family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{{ "css/screen.css" | relURL}}" />
+
+    <link rel="stylesheet" type="text/css" href="{{ "css/custom.css" | relURL}}" />
+
+    <link href="{{ "index.xml" | relURL}}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+  
+    {{hugo.Generator}}
+
+    <link rel="canonical" href="{{ .Permalink }}" />
+
+    {{ partial "semantic.html" . }}
+</head>
+<body>
+
+  <nav class="navigation">
+  {{ $path := "" }}
+  {{ with .File }}
+    {{ $path = .Path }}
+  {{ else }}
+    {{ $path = .Path }}
+  {{ end }}
+    <a href="/">{{ .Site.Title }}</a>/{{ $path }}
+  </nav>
+
+  <div class="site-wrapper">
