@@ -9,6 +9,7 @@ sectionPagesMenu = "main"
 hasCJKLanguage = true
 pygmentsCodeFences = true
 theme = "mytheme"
+enableGitInfo = true
 
 [params]
   description = "技術とかいろいろ"
